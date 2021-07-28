@@ -6,6 +6,22 @@ import {
   getDataFromPointer,
   OnSubmitParameters,
 } from 'react-hook-form-jsonschema'
+import ReCAPTCHA from "react-google-recaptcha";
+import { useRef } from 'react'
+function recaptchaValidation(recaptchaValue: string | null | undefined) {
+  return new Promise((resolve, reject) => {
+
+    if (recaptchaValue == "") {
+      reject("Recaptcha Error")
+    } else {
+      console.log(recaptchaValue, "This is the recaptchaValue")
+      resolve("Recaptcha Completed Successfully")
+
+    }
+
+
+  })
+}
 import { useMutation } from 'react-apollo'
 import { ExtensionPoint } from 'vtex.render-runtime'
 import { GraphQLError } from 'graphql'
@@ -27,6 +43,7 @@ export const FormHandler: FC<{
   >({})
 
   const [submitState, dispatchSubmitAction] = useSubmitReducer()
+  const recaptchaRef = useRef<ReCAPTCHA>(null)
 
   const onSubmit = useCallback(
     async ({ data, methods, event }: OnSubmitParameters) => {
@@ -34,7 +51,18 @@ export const FormHandler: FC<{
         event.preventDefault()
       }
       dispatchSubmitAction({ type: 'SET_LOADING' })
+      const recaptchaValue = recaptchaRef.current?.getValue()
+      try {
+        const response = await recaptchaValidation(recaptchaValue)
+        console.log(response)
 
+      } catch (error) {
+        console.log(error)
+
+        dispatchSubmitAction({ type: 'SET_RECAPTCHA_ERROR' })
+        return;
+
+      }
       await createDocumentMutation({
         variables: {
           dataEntity: props.formProps.entity,
@@ -101,6 +129,14 @@ export const FormHandler: FC<{
     >
       <SubmitContext.Provider value={submitState}>
         {props.children}
+        <div style={{ marginLeft: "120px", marginTop: "15px", marginBottom: "15px" }}>
+          <ReCAPTCHA
+            sitekey="6LfFz20bAAAAALEFR-Fe8tjEBTV-du4Sk57dqIJ-"
+            ref={recaptchaRef}
+
+          />
+        </div>
+
       </SubmitContext.Provider>
     </FormContext>
   )

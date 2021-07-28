@@ -15,7 +15,7 @@
   "store/form.submit.error.serverError": "Internal Server Error! Please, try again later!",
   "store/form.schema.loading": "Loading form...",
   "store/form.schema.error": "Error loading form, try again later!",
-  "store/form.operating.agreement": "Operating Agreement",
+  "store/form.operating.agreement": "Upload File",
   "store/form.add-button": "Add",
   "store/form.add-document.title": "Upload document",
   "store/form.add-document.label": "Document URL",
@@ -23,5 +23,6 @@
   "store/form.document-uploader.error.file-size": "File exceeds the size limit of 4MB. Please choose a smaller one.",
   "store/form.document-uploader.error.generic": "Something went wrong. Please try again.",
   "store/form.upload-button": "Upload document",
-  "store/form.upload-document-label": "Choose an document to upload"
+  "store/form.upload-document-label": "Choose an document to upload",
+  "store/form.submit.error.recaptchaError": "You must complete the Recaptcha before submitting the form"
 }

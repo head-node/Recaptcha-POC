@@ -14,5 +14,7 @@
   "store/form.submit.error.userInputError": "Found some errors in the data provided, please review the indicated fields try again!",
   "store/form.submit.error.serverError": "Internal Server Error! Please, try again later!",
   "store/form.schema.loading": "Loading form...",
-  "store/form.schema.error": "Error loading form, try again later!"
+  "store/form.schema.error": "Error loading form, try again later!",
+  "store/form.operating.agreement": "Upload File",
+  "store/form.submit.error.recaptchaError": "You must complete the Recaptcha before submitting the form"
 }

@@ -34,5 +34,14 @@
   },
   "form-success": {
     "composition": "children"
+  },
+  "form-recaptcha":{
+    "component":"Recaptcha"
+  },
+  "form-button":{
+    "component":"AnotherImageBlock"
+  },
+  "form-duplicate":{
+    "component":"AdBlock"
   }
 }
